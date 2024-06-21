@@ -1,4 +1,4 @@
-const BASE_URL = 'https://cintakasih-api-2niseygueq-et.a.run.app';
+const BASE_URL = 'https://your-base-url-is-here-et.a.run.app';
 
 const ENDPOINT = {
   predict: `${BASE_URL}/predict`,
