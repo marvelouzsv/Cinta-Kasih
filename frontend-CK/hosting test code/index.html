@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cinta Kasih Hospital</title>
+
+    <!-- Own Styles -->
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="responsive.css" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+    <style>
+        .bg-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        section {
+            padding-top: 60px; /* Adjust this value as needed based on header height */
+            margin-top: -60px; /* Adjust this value as needed based on header height */
+        }
+        #about {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+        #about.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .faq-answer.active {
+            max-height: 200px;
+        }
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
+        .faq-question {
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <nav>
+            <div class="nav-container">
+                <div class="container">
+                    <div class="nav-content">
+                        <div class="brand-name">
+                            <a href="/">Cinta Kasih Hospital</a>
+                        </div>
+                        <ul class="nav-list">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                            <li><a href="login.php">Log In</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <header>
+            <div class="container">
+                <div class="jumbotron">
+                    <div class="inner-jumbotron">
+                        <h2>Cinta Kasih Hospital</h2>
+                        <p>Take advantage of free, fast, and reliable skin image prediction now!</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="container">
+                <!-- Section for About -->
+                <section id="about">
+                    <div class="section-title">
+                        <h3>Our Hospitality</h3>
+                    </div>
+                    <p>Our specialized hospital focuses exclusively on skin cancer treatment, providing comprehensive 
+					care tailored to individual patient needs. Led by a team of experienced dermatologists and oncologists, 
+					we offer advanced medical solutions including surgery, radiation, targeted therapy, and immunotherapy. 
+					Our patient-centered approach emphasizes personalized treatment plans and holistic support services, 
+					ensuring optimal outcomes and patient well-being. We are committed to education, outreach, and 
+					community health, promoting awareness and early detection to combat skin cancer effectively.</p>
+                </section>
+
+                <!-- Section for FAQ -->
+                <section id="faq">
+                    <div class="section-title">
+                        <h3>Frequently Asked Questions (FAQ)</h3>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">What services do you offer?</h4>
+                        <div class="faq-answer">
+                            <p>We offer skin image prediction services.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">How can I contact customer support?</h4>
+                        <div class="faq-answer">
+                            <p>You can contact our support team through the contact page.</p>
+                        </div>
+                    </div>
+                    <!-- Add more FAQ items as needed -->
+                </section>
+
+                <!-- Section for Prediction Form -->
+                <section id="predict">
+                    <div class="section-title">
+                        <h3>Skin Prediction Form</h3>
+                    </div>
+
+                    <div class="predict-container">
+                        <form id="predictForm" class="predict-form" enctype="multipart/form-data" method="POST" action="process.php">
+                            <div id="dropArea">
+                                <p>
+                                    Please, click on the botton "Select your picture" or 
+                                    drag and drop your file to choose the image.
+                                </p>
+                                <input type="file" id="skinFile" name="skin" accept="image/*" />
+                                <label class="btn" id="skinFileLabel" for="skinFile">
+                                    Select your picture
+                                </label>
+
+                                <div id="previewImg"></div>
+                            </div>
+
+                            <div class="submit-form">
+                                <button class="btn" value="predict">Predict</button>
+                            </div>
+                        </form>
+
+                        <div class="result-container">
+                            <div id="waitingToPredicting">
+                                <img src="images/waiting.svg" alt="Waiting to predicting" />
+                                <p>Waiting to predict...</p>
+                            </div>
+                            <div class="loading"></div>
+                            <p id="predictionError"></p>
+                            <div id="result"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <hr class="footer-divider" />
+                <div class="main-footer">
+                    <div class="copyright">
+                        © 2024 Cinta Kasih Hospital
+                        <span class="px-1 text-muted">|</span>
+                        Light from Heaven.
+                    </div>
+                    <div class="policies">
+                        <a href="#" class="remove-style-link">Terms</a>
+                        <span class="">•</span>
+                        <a href="#" class="remove-style-link">Privacy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
+      integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="utils.js"></script>
+    <script src="api.js"></script>
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('scroll', function() {
+            var aboutSection = document.getElementById('about');
+            var aboutPosition = aboutSection.getBoundingClientRect().top;
+            var screenPosition = window.innerHeight;
+
+            if (aboutPosition < screenPosition) {
+                aboutSection.classList.add('visible');
+            } else {
+                aboutSection.classList.remove('visible');
+            }
+        });
+
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.nextElementSibling;
+                answer.classList.toggle('active');
+                answer.style.maxHeight = answer.classList.contains('active') ? `${answer.scrollHeight}px` : '0px';
+            });
+        });
+    </script>
+</body>
+</html>
